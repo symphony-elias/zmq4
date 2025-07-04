@@ -11,7 +11,7 @@
 package main
 
 import (
-	"github.com/pebbe/zmq4/examples/mdapi"
+	"github.com/symphony-elias/zmq4/examples/mdapi"
 
 	"errors"
 	"fmt"
@@ -19,9 +19,8 @@ import (
 	"time"
 )
 
-//  Calls a TSP service
-//  Returns response if successful (status code 200 OK), else NULL
-//
+// Calls a TSP service
+// Returns response if successful (status code 200 OK), else NULL
 func ServiceCall(session *mdapi.Mdcli, service string, request ...string) (reply []string, err error) {
 	reply = []string{}
 	msg, err := session.Send(service, request...)

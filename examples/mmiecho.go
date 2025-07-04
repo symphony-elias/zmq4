@@ -5,7 +5,7 @@
 package main
 
 import (
-	"github.com/pebbe/zmq4/examples/mdapi"
+	"github.com/symphony-elias/zmq4/examples/mdapi"
 
 	"fmt"
 	"os"

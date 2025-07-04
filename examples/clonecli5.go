@@ -5,8 +5,8 @@
 package main
 
 import (
-	zmq "github.com/pebbe/zmq4"
-	"github.com/pebbe/zmq4/examples/kvmsg"
+	zmq "github.com/symphony-elias/zmq4"
+	"github.com/symphony-elias/zmq4/examples/kvmsg"
 
 	"fmt"
 	"math/rand"

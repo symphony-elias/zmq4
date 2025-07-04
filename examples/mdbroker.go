@@ -7,8 +7,8 @@
 package main
 
 import (
-	zmq "github.com/pebbe/zmq4"
-	"github.com/pebbe/zmq4/examples/mdapi"
+	zmq "github.com/symphony-elias/zmq4"
+	"github.com/symphony-elias/zmq4/examples/mdapi"
 
 	"fmt"
 	"log"
@@ -384,9 +384,9 @@ func main() {
 	log.Println("W: interrupt received, shutting down...")
 }
 
-//  Pops frame off front of message and returns it as 'head'
-//  If next frame is empty, pops that empty frame.
-//  Return remaining frames of message as 'tail'
+// Pops frame off front of message and returns it as 'head'
+// If next frame is empty, pops that empty frame.
+// Return remaining frames of message as 'tail'
 func unwrap(msg []string) (head string, tail []string) {
 	head = msg[0]
 	if len(msg) > 1 && msg[1] == "" {

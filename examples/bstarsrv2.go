@@ -5,14 +5,14 @@
 package main
 
 import (
-	zmq "github.com/pebbe/zmq4"
-	"github.com/pebbe/zmq4/examples/bstar"
+	zmq "github.com/symphony-elias/zmq4"
+	"github.com/symphony-elias/zmq4/examples/bstar"
 
 	"fmt"
 	"os"
 )
 
-//  Echo service
+// Echo service
 func echo(socket *zmq.Socket) (err error) {
 	msg, err := socket.RecvMessage(0)
 	if err != nil {

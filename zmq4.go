@@ -1143,61 +1143,61 @@ The monitoring callback has the same context as the socket it was created for.
 
 Example:
 
-    package main
+	package main
 
-    import (
-        zmq "github.com/pebbe/zmq4"
-        "log"
-        "time"
-    )
+	import (
+	    zmq "github.com/symphony-elias/zmq4"
+	    "log"
+	    "time"
+	)
 
-    func rep_socket_monitor(addr string) {
-        s, err := zmq.NewSocket(zmq.PAIR)
-        if err != nil {
-            log.Fatalln(err)
-        }
-        err = s.Connect(addr)
-        if err != nil {
-            log.Fatalln(err)
-        }
-        for {
-            a, b, c, err := s.RecvEvent(0)
-            if err != nil {
-                log.Println(err)
-                break
-            }
-            log.Println(a, b, c)
-        }
-        s.Close()
-    }
+	func rep_socket_monitor(addr string) {
+	    s, err := zmq.NewSocket(zmq.PAIR)
+	    if err != nil {
+	        log.Fatalln(err)
+	    }
+	    err = s.Connect(addr)
+	    if err != nil {
+	        log.Fatalln(err)
+	    }
+	    for {
+	        a, b, c, err := s.RecvEvent(0)
+	        if err != nil {
+	            log.Println(err)
+	            break
+	        }
+	        log.Println(a, b, c)
+	    }
+	    s.Close()
+	}
 
-    func main() {
+	func main() {
 
-        // REP socket
-        rep, err := zmq.NewSocket(zmq.REP)
-        if err != nil {
-            log.Fatalln(err)
-        }
+	    // REP socket
+	    rep, err := zmq.NewSocket(zmq.REP)
+	    if err != nil {
+	        log.Fatalln(err)
+	    }
 
-        // REP socket monitor, all events
-        err = rep.Monitor("inproc://monitor.rep", zmq.EVENT_ALL)
-        if err != nil {
-            log.Fatalln(err)
-        }
-        go rep_socket_monitor("inproc://monitor.rep")
+	    // REP socket monitor, all events
+	    err = rep.Monitor("inproc://monitor.rep", zmq.EVENT_ALL)
+	    if err != nil {
+	        log.Fatalln(err)
+	    }
+	    go rep_socket_monitor("inproc://monitor.rep")
 
-        // Generate an event
-        rep.Bind("tcp://*:5555")
-        if err != nil {
-            log.Fatalln(err)
-        }
+	    // Generate an event
+	    rep.Bind("tcp://*:5555")
+	    if err != nil {
+	        log.Fatalln(err)
+	    }
 
-        // Allow some time for event detection
-        time.Sleep(time.Second)
+	    // Allow some time for event detection
+	    time.Sleep(time.Second)
 
-        rep.Close()
-        zmq.Term()
-    }
+	    rep.Close()
+	    zmq.Term()
+	}
 */
 func (soc *Socket) Monitor(addr string, events Event) error {
 	if !soc.opened {

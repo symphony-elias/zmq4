@@ -1,3 +1,3 @@
-module github.com/pebbe/zmq4
+module github.com/symphony-elias/zmq4
 
 go 1.16

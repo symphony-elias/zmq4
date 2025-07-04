@@ -9,7 +9,7 @@
 package main
 
 import (
-	zmq "github.com/pebbe/zmq4"
+	zmq "github.com/symphony-elias/zmq4"
 
 	"fmt"
 	"math/rand"

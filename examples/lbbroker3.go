@@ -6,7 +6,7 @@
 package main
 
 import (
-	zmq "github.com/pebbe/zmq4"
+	zmq "github.com/symphony-elias/zmq4"
 
 	"fmt"
 	"strings"
@@ -19,8 +19,7 @@ const (
 	WORKER_READY = "\001" //  Signals worker is ready
 )
 
-//  Basic request-reply client using REQ socket
-//
+// Basic request-reply client using REQ socket
 func client_task() {
 	client, _ := zmq.NewSocket(zmq.REQ)
 	defer client.Close()
@@ -38,8 +37,7 @@ func client_task() {
 	}
 }
 
-//  Worker using REQ socket to do load-balancing
-//
+// Worker using REQ socket to do load-balancing
 func worker_task() {
 	worker, _ := zmq.NewSocket(zmq.REQ)
 	defer worker.Close()
@@ -59,7 +57,7 @@ func worker_task() {
 	}
 }
 
-//  Our load-balancer structure, passed to reactor handlers
+// Our load-balancer structure, passed to reactor handlers
 type lbbroker_t struct {
 	frontend *zmq.Socket //  Listen to clients
 	backend  *zmq.Socket //  Listen to workers
@@ -71,7 +69,7 @@ type lbbroker_t struct {
 //  reactor passes it to a handler function. We have two handlers; one
 //  for the frontend, one for the backend:
 
-//  Handle input from client, on frontend
+// Handle input from client, on frontend
 func handle_frontend(lbbroker *lbbroker_t) error {
 
 	//  Get client request, route to first available worker
@@ -89,7 +87,7 @@ func handle_frontend(lbbroker *lbbroker_t) error {
 	return nil
 }
 
-//  Handle input from worker, on backend
+// Handle input from worker, on backend
 func handle_backend(lbbroker *lbbroker_t) error {
 	//  Use worker identity for load-balancing
 	msg, err := lbbroker.backend.RecvMessage(0)
@@ -143,9 +141,9 @@ func main() {
 	lbbroker.reactor.Run(-1)
 }
 
-//  Pops frame off front of message and returns it as 'head'
-//  If next frame is empty, pops that empty frame.
-//  Return remaining frames of message as 'tail'
+// Pops frame off front of message and returns it as 'head'
+// If next frame is empty, pops that empty frame.
+// Return remaining frames of message as 'tail'
 func unwrap(msg []string) (head string, tail []string) {
 	head = msg[0]
 	if len(msg) > 1 && msg[1] == "" {

@@ -4,7 +4,7 @@
 
 #for i in bstar mdapi flcliapi kvsimple kvmsg clone intface
 #do
-#    go install github.com/pebbe/zmq4/examples/$i
+#    go install github.com/symphony-elias/zmq4/examples/$i
 #done
 
 cd `dirname $0`

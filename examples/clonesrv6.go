@@ -5,9 +5,9 @@
 package main
 
 import (
-	zmq "github.com/pebbe/zmq4"
-	"github.com/pebbe/zmq4/examples/bstar"
-	"github.com/pebbe/zmq4/examples/kvmsg"
+	zmq "github.com/symphony-elias/zmq4"
+	"github.com/symphony-elias/zmq4/examples/bstar"
+	"github.com/symphony-elias/zmq4/examples/kvmsg"
 
 	"errors"
 	"fmt"
@@ -18,7 +18,7 @@ import (
 	"time"
 )
 
-//  Our server is defined by these properties
+// Our server is defined by these properties
 type clonesrv_t struct {
 	kvmap      map[string]*kvmsg.Kvmsg //  Key-value store
 	kvmap_init bool

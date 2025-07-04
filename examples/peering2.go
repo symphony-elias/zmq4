@@ -6,7 +6,7 @@
 package main
 
 import (
-	zmq "github.com/pebbe/zmq4"
+	zmq "github.com/symphony-elias/zmq4"
 
 	"fmt"
 	"log"
@@ -240,9 +240,9 @@ func main() {
 	fmt.Println("Exit")
 }
 
-//  Pops frame off front of message and returns it as 'head'
-//  If next frame is empty, pops that empty frame.
-//  Return remaining frames of message as 'tail'
+// Pops frame off front of message and returns it as 'head'
+// If next frame is empty, pops that empty frame.
+// Return remaining frames of message as 'tail'
 func unwrap(msg []string) (head string, tail []string) {
 	head = msg[0]
 	if len(msg) > 1 && msg[1] == "" {

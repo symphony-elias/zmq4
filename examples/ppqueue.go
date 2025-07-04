@@ -5,7 +5,7 @@
 package main
 
 import (
-	zmq "github.com/pebbe/zmq4"
+	zmq "github.com/symphony-elias/zmq4"
 
 	"fmt"
 	"time"
@@ -28,7 +28,7 @@ type worker_t struct {
 	expire    time.Time //  Expires at this time
 }
 
-//  Construct new worker
+// Construct new worker
 func s_worker_new(identity string) worker_t {
 	return worker_t{
 		identity:  identity,
@@ -152,9 +152,9 @@ func main() {
 	}
 }
 
-//  Pops frame off front of message and returns it as 'head'
-//  If next frame is empty, pops that empty frame.
-//  Return remaining frames of message as 'tail'
+// Pops frame off front of message and returns it as 'head'
+// If next frame is empty, pops that empty frame.
+// Return remaining frames of message as 'tail'
 func unwrap(msg []string) (head string, tail []string) {
 	head = msg[0]
 	if len(msg) > 1 && msg[1] == "" {

@@ -6,7 +6,7 @@
 package main
 
 import (
-	zmq "github.com/pebbe/zmq4"
+	zmq "github.com/symphony-elias/zmq4"
 
 	"fmt"
 	"strings"
@@ -19,8 +19,7 @@ const (
 	WORKER_READY = "\001" //  Signals worker is ready
 )
 
-//  Basic request-reply client using REQ socket
-//
+// Basic request-reply client using REQ socket
 func client_task() {
 	client, _ := zmq.NewSocket(zmq.REQ)
 	defer client.Close()
@@ -38,8 +37,7 @@ func client_task() {
 	}
 }
 
-//  Worker using REQ socket to do load-balancing
-//
+// Worker using REQ socket to do load-balancing
 func worker_task() {
 	worker, _ := zmq.NewSocket(zmq.REQ)
 	defer worker.Close()
@@ -133,9 +131,9 @@ LOOP:
 	time.Sleep(100 * time.Millisecond)
 }
 
-//  Pops frame off front of message and returns it as 'head'
-//  If next frame is empty, pops that empty frame.
-//  Return remaining frames of message as 'tail'
+// Pops frame off front of message and returns it as 'head'
+// If next frame is empty, pops that empty frame.
+// Return remaining frames of message as 'tail'
 func unwrap(msg []string) (head string, tail []string) {
 	head = msg[0]
 	if len(msg) > 1 && msg[1] == "" {
